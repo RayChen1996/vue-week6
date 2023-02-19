@@ -24,7 +24,6 @@
             <a class="nav-link" href="#">
                 <RouterLink to="/cart">購物車</RouterLink>
             </a>
-            
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">
