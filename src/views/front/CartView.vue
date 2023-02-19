@@ -4,26 +4,17 @@
   <table class="table align-middle">
     <thead>
       <tr>
-        <th></th>
+        
         <th>品名</th>
         <th style="width: 150px">數量/單位</th>
         <th>單價</th>
+        <th>移除</th>
       </tr>
     </thead>
     <tbody>
       <template v-if="cart.carts">
         <tr v-for="item in cart.carts" :key="item.id">
-          <td>
-            <button
-              type="button"
-              class="btn btn-outline-danger btn-sm"
-              @click="deleteCartItem(item)"
-              :disabled="item.id === loadingItem"
-            >
-              <i class="fas fa-spinner fa-pulse"></i>
-              x
-            </button>
-          </td>
+
           <td>
             {{ item.product.title }}
           </td>
@@ -45,6 +36,17 @@
           </td>
           <td class="text-end">
             {{ item.total }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-outline-danger btn-sm"
+              @click="deleteCartItem(item)"
+              :disabled="item.id === loadingItem"
+            >
+              <i class="fas fa-spinner fa-pulse"></i>
+              x
+            </button>
           </td>
         </tr>
       </template>
@@ -95,8 +97,8 @@ export default {
       };
       this.$http
         .put(`${VITE_URL}/v2/api/${VITE_PATH}/cart/${item.id}`, { data })
-        .then((res) => {
-          alert(res.data.message);
+        .then((res) => { 
+          this.showAlert(res.data.message);
           this.getCarts();
           this.loadingItem = ""; //  結束時清空id
         })
