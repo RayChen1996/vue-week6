@@ -20,7 +20,7 @@ git checkout -B main
 git add -A
 git commit -m 'deploy'
 
-# 如果你要部署在 https://HildaTseng.github.io
+ 
 
 git push -f https://github.com/RayChen1996/vue-week6.git main:gh-pages
 
