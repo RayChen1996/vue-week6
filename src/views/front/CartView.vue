@@ -26,7 +26,7 @@
                 class="form-select"
                 v-model="item.qty"
                 :disabled="item.id === loadingItem"
-                @change="updateCart(item)"
+                @change="modifyCart(item)"
               >
                 <option :value="i" v-for="i in 10" :key="`${i}12`">
                   {{ i }}
@@ -41,7 +41,7 @@
             <button
               type="button"
               class="btn btn-outline-danger btn-sm"
-              @click="deleteCartItem(item)"
+              @click="removeCartItem(item)"
               :disabled="item.id === loadingItem"
             >
               <i class="fas fa-spinner fa-pulse"></i>
@@ -70,9 +70,9 @@ import Swal from "sweetalert2"; //引入SweetAlert
 export default {
   data() {
     return {
-      productID: "", // 產品id
       cart: {}, //購物車
-      loadingItem: "", //存取id 讀取效果修正  阻擋過度讀取操作      
+      productID: "",       
+      loadingItem: "",     
     };
   },
   // 方法集
@@ -88,7 +88,7 @@ export default {
           alert(err.response.data.message);
         });
     },
-    updateCart(item) {
+    modifyCart(item) {
       //更新購物車數量
       this.loadingItem = item.id; //抓id 觸發axios前 先存取
       const data = {
@@ -115,7 +115,7 @@ export default {
             timer: 1500
       })
     },
-    deleteCartItem(item) {
+    removeCartItem(item) {
       //刪除購物車品項
       this.loadingItem = item.id;
       this.$http
@@ -130,9 +130,8 @@ export default {
         });
     },    
   },
-  // 生命週期
   mounted() {
-    this.getCarts(); //執行購物車列表
+    this.getCarts(); 
   },
 };
 </script>

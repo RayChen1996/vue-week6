@@ -5,7 +5,6 @@
             <tr>
                 <td>商品</td>
                 <td>圖片</td>
-               
                 <td>價格</td>
                 <td></td>
             </tr>                
@@ -43,7 +42,7 @@
 <script>
 import { RouterLink } from 'vue-router';
 import Swal from "sweetalert2"; //引入SweetAlert
-const {VITE_URL, VITE_PATH} = import.meta.env   //用解構方式 將環境變數取出
+const {VITE_URL, VITE_PATH} = import.meta.env 
 
 export default {
     data () {
@@ -83,8 +82,7 @@ export default {
             this.$http.post(`${VITE_URL}/v2/api/${VITE_PATH}/cart`, { data })
                 .then(res => {                                        
                     this.loadingItem = "";
-                    this.showAlert(res.data.message);
-                    
+                    this.showAlert(res.data.message);                    
                 })
                 .catch(err => {
                     alert(err);
